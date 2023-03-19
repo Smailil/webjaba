@@ -21,9 +21,11 @@ public class PositionHistory implements CommonEntity<Long> {
     @Column(nullable = false, name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "employee_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "employee_id")
+    @ToString.Exclude
     @NonNull
-    private Long employeeId;
+    private Employee employee;
 
     @Column(nullable = false, name = "position")
     @NonNull
@@ -39,8 +41,9 @@ public class PositionHistory implements CommonEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         PositionHistory other = (PositionHistory) o;
         return Objects.equals(id, other.id)
-                && employeeId.equals(other.employeeId)
+                && employee.equals(other.employee)
                 && position.equals(other.position)
                 && dateOfAttainment.equals(other.dateOfAttainment);
     }
+
 }

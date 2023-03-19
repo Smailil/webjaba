@@ -21,9 +21,11 @@ public class PaymentHistory implements CommonEntity<Long> {
     @Column(nullable = false, name = "payment_id")
     private Long id;
 
-    @Column(nullable = false, name = "employee_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    @ToString.Exclude
     @NonNull
-    private Long employeeId;
+    private Employee employee;
 
     @Column(nullable = false, name = "type")
     @NonNull
@@ -47,7 +49,7 @@ public class PaymentHistory implements CommonEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         PaymentHistory other = (PaymentHistory) o;
         return Objects.equals(id, other.id)
-                && employeeId.equals(other.employeeId)
+                && employee.equals(other.employee)
                 && type.equals(other.type)
                 && paymentAmount.equals(other.paymentAmount)
                 && date.equals(other.date)

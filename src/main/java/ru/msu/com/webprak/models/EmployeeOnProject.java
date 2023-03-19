@@ -20,13 +20,17 @@ public class EmployeeOnProject implements CommonEntity<Long> {
     @Column(nullable = false, name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "project_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id")
+    @ToString.Exclude
     @NonNull
-    private Long projectId;
+    private Project project;
 
-    @Column(nullable = false, name = "employee_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    @ToString.Exclude
     @NonNull
-    private Long employeeId;
+    private Employee employee;
 
     @Column(nullable = false, name = "role")
     @NonNull
@@ -38,8 +42,8 @@ public class EmployeeOnProject implements CommonEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         EmployeeOnProject other = (EmployeeOnProject) o;
         return Objects.equals(id, other.id)
-                && projectId.equals(other.projectId)
-                && employeeId.equals(other.employeeId)
+                && project.equals(other.project)
+                && employee.equals(other.employee)
                 && role.equals(other.role);
     }
 }
