@@ -34,6 +34,12 @@ public class ProjectDAOTest {
     void testGetProjectsByName() {
         List<Project> projects = projectDAO.getProjectsByName("Project");
         assertEquals(3, projects.size());
+
+        List<Project> projects1 = projectDAO.getProjectsByName("Project A");
+        assertEquals(1, projects1.size());
+
+        List<Project> projects2 = projectDAO.getProjectsByName("Project Baza");
+        assertNull(projects2);
     }
 
     @Test

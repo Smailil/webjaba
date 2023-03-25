@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.msu.com.webprak.DAO.EmployeeDAOTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-03-25T20:20:55" hostname="smailil-Vivobook-ASUSLaptop-X3400PH-K3400PH" time="21.476">
+  <properties/>
+  <testcase name="testDeleteEmployee()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="3.273"/>
+  <testcase name="testSearchEmployees()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.614"/>
+  <testcase name="testUpdateEmployee()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.405"/>
+  <testcase name="testGetPositionHistory()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.319"/>
+  <testcase name="testDeleteById()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.232"/>
+  <testcase name="testGetAwardedPaymentHistory()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.17"/>
+  <testcase name="testGetEmployeeProjects()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.225"/>
+  <testcase name="testGetPaymentHistory()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.138"/>
+  <testcase name="testGetFilterBuilder()" classname="ru.msu.com.webprak.DAO.EmployeeDAOTest" time="2.099"/>
+  <system-out><![CDATA[23:20:51.943 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [EmployeeDAOTest]: using SpringBootContextLoader
+23:20:51.949 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [ru.msu.com.webprak.DAO.EmployeeDAOTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+23:20:51.950 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [ru.msu.com.webprak.DAO.EmployeeDAOTest]: EmployeeDAOTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:20:51.973 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [EmployeeDAOTest]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+23:20:52.062 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/home/smailil/jaba/webjaba/build/classes/java/main/ru/msu/com/webprak/WebParkApplication.class]
+23:20:52.064 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration ru.msu.com.webprak.WebParkApplication for test class ru.msu.com.webprak.DAO.EmployeeDAOTest
+23:20:52.171 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [EmployeeDAOTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2023-03-25T23:20:52.440+03:00  INFO 63856 --- [    Test worker] ru.msu.com.webprak.DAO.EmployeeDAOTest   : Starting EmployeeDAOTest using Java 19.0.2 with PID 63856 (started by smailil in /home/smailil/jaba/webjaba)
+2023-03-25T23:20:52.442+03:00  INFO 63856 --- [    Test worker] ru.msu.com.webprak.DAO.EmployeeDAOTest   : No active profile set, falling back to 1 default profile: "default"
+2023-03-25T23:20:52.980+03:00  INFO 63856 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-25T23:20:53.000+03:00  INFO 63856 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 JPA repository interfaces.
+2023-03-25T23:20:53.319+03:00  INFO 63856 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-03-25T23:20:53.860+03:00  INFO 63856 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-03-25T23:20:54.842+03:00  INFO 63856 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-25T23:20:55.095+03:00  WARN 63856 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-25T23:20:55.528+03:00  INFO 63856 --- [    Test worker] ru.msu.com.webprak.DAO.EmployeeDAOTest   : Started EmployeeDAOTest in 3.331 seconds (process running for 4.481)
+[]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

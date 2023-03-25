@@ -66,7 +66,7 @@ public class EmployeeDAOTest {
         employee = employeeDAO.getById(1L);
         assertNull(employee);
     }
-    
+
     @Test
     void testGetFilterBuilder() {
         EmployeeDAO.Filter filter = EmployeeDAO.getFilterBuilder().build();
@@ -100,6 +100,12 @@ public class EmployeeDAOTest {
         List<Employee> employees4 = employeeDAO.searchEmployees(filterBuilder4.build());
         System.out.println(employees4);
         assertEquals(0, employees4.size());
+
+        EmployeeDAO.Filter.FilterBuilder filterBuilder5 = new EmployeeDAO.Filter.FilterBuilder();
+        filterBuilder5.id(2L);
+        filterBuilder5.name("Шелдон Купер");
+        List<Employee> employees5 = employeeDAO.searchEmployees(filterBuilder5.build());
+        assertEquals(0, employees5.size());
 
     }
 
