@@ -43,22 +43,38 @@ public class EmployeeDAOImpl extends CommonDAOImpl<Employee, Long> implements Em
                 predicates.add(builder.like(root.get("name"), "%" + filter.getName() + "%"));
             if (filter.getPosition() != null)
                 predicates.add(builder.like(root.get("position"), "%" + filter.getPosition() + "%"));
-            if (filter.getProjectIds() != null && !filter.getProjectIds().isEmpty())
-                predicates.add(root.join("projects").get("id").in(filter.getProjectIds()));
+
+            if (filter.getProjectIds() != null && !filter.getProjectIds().isEmpty()) {
+                Subquery<Long> employeeOnProjectSubquery = criteriaQuery.subquery(Long.class);
+                Root<EmployeeOnProject> employeeOnProjectRoot = employeeOnProjectSubquery.from(EmployeeOnProject.class);
+                employeeOnProjectSubquery.select(employeeOnProjectRoot.get("employee").get("id"))
+                        .where(employeeOnProjectRoot.get("project").get("id").in(filter.getProjectIds()));
+                predicates.add(root.get("id").in(employeeOnProjectSubquery));
+            }
+
             if (filter.getMinLengthOfService() != null)
                 predicates.add(builder.greaterThanOrEqualTo(root.get("lengthOfService"), filter.getMinLengthOfService()));
             if (filter.getMaxLengthOfService() != null)
                 predicates.add(builder.lessThanOrEqualTo(root.get("lengthOfService"), filter.getMaxLengthOfService()));
-            if (filter.getAwardId() != null) {
-                Join<Employee, PaymentHistory> paymentHistoryJoin = root.join("paymentHistory", JoinType.LEFT);
-                predicates.add(builder.isTrue(paymentHistoryJoin.get("isAward")));
+
+            if (filter.getAwardType() != null) {
+                Subquery<Long> paymentHistorySubquery = criteriaQuery.subquery(Long.class);
+                Root<PaymentHistory> paymentHistoryRoot = paymentHistorySubquery.from(PaymentHistory.class);
+                paymentHistorySubquery.select(paymentHistoryRoot.get("employee").get("id"))
+                        .where(builder.and(
+                                builder.equal(paymentHistoryRoot.get("type"), filter.getAwardType()),
+                                builder.isTrue(paymentHistoryRoot.get("isAward"))
+                        ));
+                predicates.add(root.get("id").in(paymentHistorySubquery));
             }
+
             if (!predicates.isEmpty())
                 criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
             return session.createQuery(criteriaQuery).getResultList();
         }
     }
+
 
     @Override
     public List<PaymentHistory> getPaymentHistory(Long employeeId) {

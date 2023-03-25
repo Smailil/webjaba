@@ -29,7 +29,7 @@ public interface EmployeeDAO extends CommonDAO<Employee, Long> {
         private List<Long> projectIds;
         private Integer minLengthOfService;
         private Integer maxLengthOfService;
-        private Long awardId;
+        private String awardType;
     }
 
     static Filter.FilterBuilder getFilterBuilder() {

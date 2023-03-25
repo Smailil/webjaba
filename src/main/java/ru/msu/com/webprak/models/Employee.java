@@ -2,7 +2,7 @@ package ru.msu.com.webprak.models;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -44,6 +44,7 @@ public class Employee implements CommonEntity<Long> {
     @Column(nullable = false, name = "length_of_service")
     @NonNull
     private Integer lengthOfService;
+
 
     @Override
     public boolean equals(Object o) {

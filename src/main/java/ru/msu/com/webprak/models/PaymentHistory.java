@@ -2,7 +2,9 @@ package ru.msu.com.webprak.models;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -33,7 +35,7 @@ public class PaymentHistory implements CommonEntity<Long> {
 
     @Column(nullable = false, name = "payment_amount")
     @NonNull
-    private Double paymentAmount;
+    private BigDecimal paymentAmount;
 
     @Column(nullable = false, name = "date")
     @NonNull

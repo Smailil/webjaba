@@ -38,7 +38,7 @@ CREATE TABLE payment_history (
     payment_id serial PRIMARY KEY,
     employee_id integer NOT NULL REFERENCES employees (employee_id) ON DELETE CASCADE,
     type text NOT NULL,
-    payment_amount money NOT NULL,
+    payment_amount numeric NOT NULL,
     date date NOT NULL,
     is_award boolean NOT NULL
 );

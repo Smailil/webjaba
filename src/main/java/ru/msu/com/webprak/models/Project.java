@@ -2,7 +2,7 @@ package ru.msu.com.webprak.models;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -31,6 +31,7 @@ public class Project implements CommonEntity<Long> {
 
     @Column(nullable = false, name = "end_date")
     private Date endDate;
+
 
     @Override
     public boolean equals(Object o) {

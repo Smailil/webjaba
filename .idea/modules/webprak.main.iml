@@ -10,6 +10,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="3c0407b8-2772-4791-b47d-b3cfd3aa5242" />
           <factory-entry name="webprak.main" value="3c0407b8-2772-4791-b47d-b3cfd3aa5242" />
         </datasource-mapping>
         <naming-strategy-map />
