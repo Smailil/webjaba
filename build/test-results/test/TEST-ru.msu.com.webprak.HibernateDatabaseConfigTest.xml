@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.msu.com.webprak.HibernateDatabaseConfigTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-27T11:49:29" hostname="smailil-Vivobook-ASUSLaptop-X3400PH-K3400PH" time="0.191">
+  <properties/>
+  <testcase name="test()" classname="ru.msu.com.webprak.HibernateDatabaseConfigTest" time="0.191"/>
+  <system-out><![CDATA[14:49:26.546 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [HibernateDatabaseConfigTest]: using SpringBootContextLoader
+14:49:26.549 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [ru.msu.com.webprak.HibernateDatabaseConfigTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+14:49:26.550 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [ru.msu.com.webprak.HibernateDatabaseConfigTest]: HibernateDatabaseConfigTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:49:26.571 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [HibernateDatabaseConfigTest]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+14:49:26.625 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/home/smailil/jaba/webjaba/build/classes/java/main/ru/msu/com/webprak/WebParkApplication.class]
+14:49:26.626 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration ru.msu.com.webprak.WebParkApplication for test class ru.msu.com.webprak.HibernateDatabaseConfigTest
+14:49:26.694 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [HibernateDatabaseConfigTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+14:49:26.695 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [HibernateDatabaseConfigTest], class annotated with @DirtiesContext [false] with mode [null]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2023-03-27T14:49:26.887+03:00  INFO 13514 --- [    Test worker] r.m.c.w.HibernateDatabaseConfigTest      : Starting HibernateDatabaseConfigTest using Java 19.0.2 with PID 13514 (started by smailil in /home/smailil/jaba/webjaba)
+2023-03-27T14:49:26.888+03:00  INFO 13514 --- [    Test worker] r.m.c.w.HibernateDatabaseConfigTest      : No active profile set, falling back to 1 default profile: "default"
+2023-03-27T14:49:27.306+03:00  INFO 13514 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-27T14:49:27.323+03:00  INFO 13514 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 JPA repository interfaces.
+2023-03-27T14:49:27.614+03:00  INFO 13514 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-03-27T14:49:28.011+03:00  INFO 13514 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-03-27T14:49:28.767+03:00  INFO 13514 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-27T14:49:29.013+03:00  WARN 13514 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-27T14:49:29.335+03:00  INFO 13514 --- [    Test worker] r.m.c.w.HibernateDatabaseConfigTest      : Started HibernateDatabaseConfigTest in 2.616 seconds (process running for 3.481)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

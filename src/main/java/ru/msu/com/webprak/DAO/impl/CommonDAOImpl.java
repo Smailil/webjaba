@@ -49,15 +49,18 @@ public abstract class CommonDAOImpl<T extends CommonEntity<ID>, ID extends Seria
 
 
     @Override
-    public void save(T entity) {
+    public T save(T entity) {
+        T newEntity;
         try (Session session = sessionFactory.openSession()) {
             if (entity.getId() != null) {
                 entity.setId(null);
             }
             session.beginTransaction();
-            session.merge(entity);
+            newEntity = session.merge(entity);
+            session.flush();
             session.getTransaction().commit();
         }
+        return newEntity;
     }
 
     @Override
