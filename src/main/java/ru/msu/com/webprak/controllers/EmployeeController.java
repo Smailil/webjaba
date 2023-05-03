@@ -44,6 +44,11 @@ public class EmployeeController {
         return "employees";
     }
 
+    @GetMapping("/addEmployee")
+    public String showAddEmployeeForm() {
+        return "addEmployee";
+    }
+
     @GetMapping("/searchEmployee")
     public String searchEmployee(@RequestParam(required = false) Long id,
                                  @RequestParam(required = false) String name,

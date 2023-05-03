@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Employee Details</title>
+    <title>Сведения о служащем</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -17,7 +17,7 @@
 <div th:replace="general :: page-header"> </div>
 
 <div class="indent">
-    <h2>"${employee.getName()}"</h2>
+    <h2>Сведения о служащем</h2>
     <table class="table table-bordered table-warning">
         <tbody>
         <tr>
@@ -25,42 +25,44 @@
             <td th:text="${employee.getId()}"> </td>
         </tr>
         <tr>
-            <th scope="row">Name</th>
+            <th scope="row">ФИО</th>
             <td th:text="${employee.getName()}"> </td>
         </tr>
         <tr>
-            <th scope="row">Home Address</th>
+            <th scope="row">Домашний адрес</th>
             <td th:text="${employee.getHomeAddress()}"> </td>
         </tr>
         <tr>
-            <th scope="row">Date of Birth</th>
+            <th scope="row">День рождения</th>
             <td th:text="${#dates.format(employee.getDayOfBirth(), 'yyyy-MM-dd')}"> </td>
         </tr>
         <tr>
-            <th scope="row">Education</th>
+            <th scope="row">Образование</th>
             <td th:text="${employee.getEducation()}"> </td>
         </tr>
         <tr>
-            <th scope="row">Position</th>
+            <th scope="row">Должность</th>
             <td th:text="${employee.getPosition()}"> </td>
         </tr>
         <tr>
-            <th scope="row">Length of Service</th>
+            <th scope="row">Стаж</th>
             <td th:text="${employee.getLengthOfService()}"> </td>
         </tr>
         </tbody>
     </table>
-    <form method="post" action="/deleteEmployee">
-        <input type="hidden" name="id" th:value="${employee.getId()}"/>
-        <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</button>
+    <div class="d-inline-flex">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Изменить</button>
+        <form method="post" action="/deleteEmployee" class="mr-2">
+            <input type="hidden" name="id" th:value="${employee.getId()}"/>
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Employee</h5>
+                    <h5 class="modal-title" id="editModalLabel">Изменение сведений о служащем</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -69,51 +71,51 @@
                     <form method="post" action="/editEmployee">
                         <input type="hidden" name="id" th:value="${employee.getId()}"/>
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">ФИО</label>
                             <input type="text" class="form-control" id="name" name="name"
                                    th:value="${employee.getName()}" required>
                         </div>
                         <div class="form-group">
-                            <label for="homeAddress">Home Address</label>
+                            <label for="homeAddress">Домашний адрес</label>
                             <input type="text" class="form-control" id="homeAddress" name="homeAddress"
                                    th:value="${employee.getHomeAddress()}" required>
                         </div>
                         <div class="form-group">
-                            <label for="dayOfBirth">Date of Birth</label>
+                            <label for="dayOfBirth">День рождения</label>
                             <input type="date" class="form-control" id="dayOfBirth" name="dayOfBirth"
                                    th:value="${#dates.format(employee.getDayOfBirth(), 'yyyy-MM-dd')}" required>
                         </div>
                         <div class="form-group">
-                            <label for="education">Education</label>
+                            <label for="education">Образование</label>
                             <input type="text" class="form-control" id="education" name="education"
                                    th:value="${employee.getEducation()}" required>
                         </div>
                         <div class="form-group">
-                            <label for="position">Position</label>
+                            <label for="position">Должность</label>
                             <input type="text" class="form-control" id="position" name="position"
                                    th:value="${employee.getPosition()}" required>
                         </div>
                         <div class="form-group">
-                            <label for="lengthOfService">Length of Service</label>
+                            <label for="lengthOfService">Стаж</label>
                             <input type="number" class="form-control" id="lengthOfService" name="lengthOfService"
                                    th:value="${employee.getLengthOfService()}" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <h3>Payment Histories</h3>
+    <h3>История выплат</h3>
     <table class="table table-bordered table-warning">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Payment ID</th>
-            <th scope="col">Type</th>
-            <th scope="col">Payment Amount</th>
-            <th scope="col">Date</th>
-            <th scope="col">Is Award</th>
+            <th scope="col">ID</th>
+            <th scope="col">Название</th>
+            <th scope="col">Сумма</th>
+            <th scope="col">Дата выплаты</th>
+            <th scope="col">Премия</th>
         </tr>
         </thead>
         <tbody>
@@ -140,12 +142,12 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPaymentHistoryModal">Add Payment History</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPaymentHistoryModal">Добавить выплату</button>
     <div class="modal fade" id="addPaymentHistoryModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentHistoryModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addPaymentHistoryModalLabel">Add Payment History</h5>
+                    <h5 class="modal-title" id="addPaymentHistoryModalLabel">Добавление выплаты</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -154,37 +156,36 @@
                     <form method="post" action="/addPaymentHistory">
                         <input type="hidden" id="employeeId" name="employeeId" th:attr="value=${employee.id}">
                         <div class="form-group">
-                            <label for="amount">Amount</label>
+                            <label for="amount">Сумма</label>
                             <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
                         </div>
                         <div class="form-group">
-                            <label for="type">Type</label>
+                            <label for="type">Название</label>
                             <input type="text" class="form-control" id="type" name="type" required>
                         </div>
                         <div class="form-group">
-                            <label for="dateOfPayment">Date of Payment</label>
+                            <label for="dateOfPayment">Дата выплаты</label>
                             <input type="date" class="form-control" id="dateOfPayment" name="dateOfPayment" required>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="isAward" name="isAward">
-                            <label class="form-check-label" for="isAward">Is Award</label>
+                            <label class="form-check-label" for="isAward">Премия</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Payment History</button>
+                        <button type="submit" class="btn btn-primary">Добавить выплату</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <h3>Projects</h3>
+    <h3>Проекты</h3>
     <table class="table table-bordered table-warning">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Project ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
+            <th scope="col">ID</th>
+            <th scope="col">Название</th>
+            <th scope="col">Дата начала</th>
+            <th scope="col">Дата окончания</th>
         </tr>
         </thead>
         <tbody>
@@ -210,13 +211,13 @@
         </tbody>
     </table>
 
-    <h3>Position History</h3>
+    <h3>Карьерная история</h3>
     <table class="table table-bordered table-warning">
         <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Position</th>
-            <th scope="col">Date of Attainment</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Дата назначения</th>
         </tr>
         </thead>
         <tbody>

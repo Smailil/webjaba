@@ -44,4 +44,16 @@ public class ProjectDAOImpl extends CommonDAOImpl<Project, Long> implements Proj
         }
         return ret;
     }
+
+    @Override
+    public List<EmployeeOnProject> getEmployeeOnProjectByProject(Long projectId) {
+        List<EmployeeOnProject> ret = new ArrayList<>();
+        for(EmployeeOnProject employeeOnProject : employeeOnProjectDAO.getAll()) {
+            if (Objects.equals(employeeOnProject.getProject().getId(), projectId)) {
+                ret.add(employeeOnProject);
+            }
+        }
+        return ret;
+    }
+
 }

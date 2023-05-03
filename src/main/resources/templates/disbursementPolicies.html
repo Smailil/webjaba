@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Политики выплат</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .indent {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="general :: page-header"> </div>
+
+<div class="indent">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDisbursementPolicyModal">Добавить политику выплат</button>
+    <div class="modal fade" id="addDisbursementPolicyModal" tabindex="-1" role="dialog" aria-labelledby="addDisbursementPolicyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDisbursementPolicyModalLabel">Добавление политики выплат</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/addDisbursementPolicy">
+                        <div class="form-group">
+                            <label for="type">Название</label>
+                            <input type="text" class="form-control" id="type" name="type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentAmount">Сумма</label>
+                            <input type="number" class="form-control" id="paymentAmount" name="paymentAmount" step="0.01" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Добавить политику выплат</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-warning">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Type</th>
+            <th scope="col">Payment Amount</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${disbursementPolicy == null || disbursementPolicy.isEmpty()}">
+            <td colspan="3">No disbursement policies in the database yet. </td>
+        </tr>
+        <tr th:each="policy : ${disbursementPolicy}">
+            <td>
+                <span th:text="${policy.getId()}"> </span>
+            </td>
+            <td>
+                <span th:text="${policy.getType()}"> </span>
+            </td>
+            <td>
+                <span th:text="${policy.getPaymentAmount()}"> </span>
+            </td>
+            <td>
+                <div class="d-inline-flex">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="'#editModal' + ${policy.getId()}">Изменить</button>
+                    <form method="post" action="/deleteDisbursementPolicy" style="display:inline;">
+                        <input type="hidden" name="id" th:value="${policy.getId()}"/>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+                <div class="modal fade" th:id="'editModal' + ${policy.getId()}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">Изменение политики выплат</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="/editDisbursementPolicy">
+                                    <input type="hidden" name="id" th:value="${policy.getId()}"/>
+                                    <div class="form-group">
+                                        <label for="editType">Название</label>
+                                        <input type="text" class="form-control" id="editType" name="type"
+                                               th:value="${policy.getType()}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPaymentAmount">Сумма</label>
+                                        <input type="number" class="form-control" id="editPaymentAmount" name="paymentAmount" step="0.01"
+                                               th:value="${policy.getPaymentAmount()}" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="general :: site-script"></div>
+
+</body>
+</html>
