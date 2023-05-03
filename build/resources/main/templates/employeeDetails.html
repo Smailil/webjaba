@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .indent {
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="general :: page-header"> </div>
+
+<div class="indent">
+    <h2>"${employee.getName()}"</h2>
+    <table class="table table-bordered table-warning">
+        <tbody>
+        <tr>
+            <th scope="row">ID</th>
+            <td th:text="${employee.getId()}"> </td>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td th:text="${employee.getName()}"> </td>
+        </tr>
+        <tr>
+            <th scope="row">Home Address</th>
+            <td th:text="${employee.getHomeAddress()}"> </td>
+        </tr>
+        <tr>
+            <th scope="row">Date of Birth</th>
+            <td th:text="${#dates.format(employee.getDayOfBirth(), 'yyyy-MM-dd')}"> </td>
+        </tr>
+        <tr>
+            <th scope="row">Education</th>
+            <td th:text="${employee.getEducation()}"> </td>
+        </tr>
+        <tr>
+            <th scope="row">Position</th>
+            <td th:text="${employee.getPosition()}"> </td>
+        </tr>
+        <tr>
+            <th scope="row">Length of Service</th>
+            <td th:text="${employee.getLengthOfService()}"> </td>
+        </tr>
+        </tbody>
+    </table>
+    <form method="post" action="/deleteEmployee">
+        <input type="hidden" name="id" th:value="${employee.getId()}"/>
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</button>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Employee</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/editEmployee">
+                        <input type="hidden" name="id" th:value="${employee.getId()}"/>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   th:value="${employee.getName()}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="homeAddress">Home Address</label>
+                            <input type="text" class="form-control" id="homeAddress" name="homeAddress"
+                                   th:value="${employee.getHomeAddress()}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dayOfBirth">Date of Birth</label>
+                            <input type="date" class="form-control" id="dayOfBirth" name="dayOfBirth"
+                                   th:value="${#dates.format(employee.getDayOfBirth(), 'yyyy-MM-dd')}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="education">Education</label>
+                            <input type="text" class="form-control" id="education" name="education"
+                                   th:value="${employee.getEducation()}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" class="form-control" id="position" name="position"
+                                   th:value="${employee.getPosition()}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lengthOfService">Length of Service</label>
+                            <input type="number" class="form-control" id="lengthOfService" name="lengthOfService"
+                                   th:value="${employee.getLengthOfService()}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Payment Histories</h3>
+    <table class="table table-bordered table-warning">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Payment ID</th>
+            <th scope="col">Type</th>
+            <th scope="col">Payment Amount</th>
+            <th scope="col">Date</th>
+            <th scope="col">Is Award</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${paymentHistories == null || paymentHistories.isEmpty()}">
+            <td colspan="5">No payment histories in the database yet.</td>
+        </tr>
+        <tr th:each="payment : ${paymentHistories}">
+            <td>
+                <span th:text="${payment.getId()}"> </span>
+            </td>
+            <td>
+                <span th:text="${payment.getType()}"> </span>
+            </td>
+            <td>
+                <span th:text="${payment.getPaymentAmount()}"> </span>
+            </td>
+            <td>
+                <span th:text="${#dates.format(payment.getDate(), 'yyyy-MM-dd')}"> </span>
+            </td>
+            <td>
+                <span th:text="${payment.getIsAward()}"> </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPaymentHistoryModal">Add Payment History</button>
+    <div class="modal fade" id="addPaymentHistoryModal" tabindex="-1" role="dialog" aria-labelledby="addPaymentHistoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPaymentHistoryModalLabel">Add Payment History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/addPaymentHistory">
+                        <input type="hidden" id="employeeId" name="employeeId" th:attr="value=${employee.id}">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input type="text" class="form-control" id="type" name="type" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfPayment">Date of Payment</label>
+                            <input type="date" class="form-control" id="dateOfPayment" name="dateOfPayment" required>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isAward" name="isAward">
+                            <label class="form-check-label" for="isAward">Is Award</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Payment History</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h3>Projects</h3>
+    <table class="table table-bordered table-warning">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Project ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${projects == null || projects.isEmpty()}">
+            <td colspan="4">No projects in the database yet.</td>
+        </tr>
+        <tr th:each="project : ${projects}">
+            <td>
+                <span th:text="${project.getId()}"> </span>
+            </td>
+            <td>
+                <a th:href="'/projectDetails?projectId=' + ${project.getId()}">
+                    <span th:text="${project.getName()}"> </span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${#dates.format(project.getStartDate(), 'yyyy-MM-dd')}"> </span>
+            </td>
+            <td>
+                <span th:text="${project.getEndDate() != null ? #dates.format(project.getEndDate(), 'yyyy-MM-dd') : 'Not ended yet'}"> </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>Position History</h3>
+    <table class="table table-bordered table-warning">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Position</th>
+            <th scope="col">Date of Attainment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${positionHistories == null || positionHistories.isEmpty()}">
+            <td colspan="4">No position history records in the database yet.</td>
+        </tr>
+        <tr th:each="positionHistory : ${positionHistories}">
+            <td>
+                <span th:text="${positionHistory.getId()}"> </span>
+            </td>
+            <td>
+                <span th:text="${positionHistory.getPosition()}"> </span>
+            </td>
+            <td>
+                <span th:text="${#dates.format(positionHistory.getDateOfAttainment(), 'yyyy-MM-dd')}"> </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div th:replace="general :: site-script"></div>
+
+</body>
+</html>
