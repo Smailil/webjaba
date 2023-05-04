@@ -39,7 +39,7 @@
                 <input type="text" class="form-control" placeholder="Должность" name="position">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="ID проектов (через запятую)" name="projectIds">
+                <input type="text" class="form-control" placeholder="ID проекта" name="projectIds">
             </div>
             <div class="col">
                 <input type="number" class="form-control" placeholder="Минимальный стаж" name="minLengthOfService">
@@ -70,7 +70,7 @@
         </thead>
         <tbody>
         <tr th:if="${employee == null || employee.isEmpty()}">
-            <td colspan="6">No employees in the database yet. </td>
+            <td colspan="6">Сотрудники не найдены. </td>
         </tr>
         <tr th:each="empl : ${employee}">
             <td>

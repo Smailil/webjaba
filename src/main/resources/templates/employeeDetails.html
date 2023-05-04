@@ -120,7 +120,7 @@
         </thead>
         <tbody>
         <tr th:if="${paymentHistories == null || paymentHistories.isEmpty()}">
-            <td colspan="5">No payment histories in the database yet.</td>
+            <td colspan="5">История выплат не найдена.</td>
         </tr>
         <tr th:each="payment : ${paymentHistories}">
             <td>
@@ -190,7 +190,7 @@
         </thead>
         <tbody>
         <tr th:if="${projects == null || projects.isEmpty()}">
-            <td colspan="4">No projects in the database yet.</td>
+            <td colspan="4">Проекты не найдены.</td>
         </tr>
         <tr th:each="project : ${projects}">
             <td>
@@ -222,7 +222,7 @@
         </thead>
         <tbody>
         <tr th:if="${positionHistories == null || positionHistories.isEmpty()}">
-            <td colspan="4">No position history records in the database yet.</td>
+            <td colspan="4">Карьерная история не найдена.</td>
         </tr>
         <tr th:each="positionHistory : ${positionHistories}">
             <td>
